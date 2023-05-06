@@ -1,76 +1,82 @@
 <template>
-  <h1>Too Simple Encrypt</h1>
-  *Currently, this tool only ensures secrecy, not integrate or authenticity.
-  <h2>Secretly share a key</h2>
-  0. One person will click this button so there is 1 Alice and 1 Bob:
-  <button @click="isAlice = !isAlice">Switch role</button>
-  <div v-if="isAlice">
-    <p>You are Alice</p>
-    <smart-input
-        text="1. Receive box 1 from other and paste it here"
-        v-model="bobPublicKeyStr"
-        @input="bobPublicKeyStrReceived"></smart-input>
-    <smart-input
-        text="2. Copy this and sent to other (click to copy)"
-        v-model="encryptedSharedKeyStr"
-        readonly
-        copyable-field></smart-input>
-  </div>
-  <div v-else>
-    <p>You are Bob</p>
-    <smart-input
-        text="1. Send this to other (click to copy)"
-        v-model="publicKeyStr"
-        readonly
-        copyable-field></smart-input>
-    <smart-input
-        text="2. Receive box 2 from other and paste it here"
-        @input="receiveSharedKey"></smart-input>
-  </div>
-
-  <h2>Shared key</h2>
-  <smart-input
-      text="3. After both has done 1 and 2, this shared key can be saved so next time you can skip above steps by pasting the shared key here:"
-      copy-button
-      v-model="sharedKeyStr"
-      @input="(event) => { updateSharedKey(event.target.value) }"></smart-input>
-
-  <h2>Encrypt/Decrypt with shared key</h2>
-
   <div>
-    <p>To encrypt:</p>
-    <smart-input
-        text="4e. Put text to encrypt here"
-        v-model="msgToEncrypt"
-        @input="(event) => { encryptMsg(event.target.value) }"
-    ></smart-input>
-    <smart-input
-        text="5e. Send this to other (click to copy)"
-        v-model="encryptedStr"
-        copyable-field
-        readonly
-    ></smart-input>
-  </div>
+    <h1>{{ texts[lang].title }}</h1>
+    <button @click="lang === 'en' ? lang = 'zh' : lang = 'en'">
+      {{ lang === 'en' ? '切换至中文' : 'Switch to English' }}
+    </button>
+    {{ texts[lang].notice }}
+    <h2>{{ texts[lang].secretly_share }}</h2>
+    {{ texts[lang].one_person }}
+    <button @click="isAlice = !isAlice">{{ texts[lang].switch_role }}</button>
+    <div v-if="isAlice">
+      <p>{{ texts[lang].you_are_alice }}</p>
+      <smart-input
+          :text="texts[lang].alice_receive_box1"
+          v-model="bobPublicKeyStr"
+          @input="bobPublicKeyStrReceived"></smart-input>
+      <smart-input
+          :text="texts[lang].alice_send_box2"
+          v-model="encryptedSharedKeyStr"
+          readonly
+          copyable-field></smart-input>
+    </div>
+    <div v-else>
+      <p>{{ texts[lang].you_are_bob }}</p>
+      <smart-input
+          :text="texts[lang].bob_send_box1"
+          v-model="publicKeyStr"
+          readonly
+          copyable-field></smart-input>
+      <smart-input
+          :text="texts[lang].bob_receive_box2"
+          @input="receiveSharedKey"></smart-input>
+    </div>
 
-  <div>
-    <p>To decrypt:</p>
+    <h2>{{ texts[lang].shared_key }}</h2>
     <smart-input
-        text="4d. Paste encrypt box 5e from other here"
-        v-model="msgToDecrypt"
-        @input="(event) => { decryptMsg(event.target.value) }"
-    ></smart-input>
-    <smart-input
-        text="5d. Decrypted text (click to copy)"
-        v-model="decryptedStr"
-        copyable-field
-        readonly
-    ></smart-input>
-  </div>
+        :text="texts[lang].shared_key_instruction"
+        copy-button
+        v-model="sharedKeyStr"
+        @input="(event) => { updateSharedKey(event.target.value) }"></smart-input>
 
+    <h2>{{ texts[lang].encrypt_decrypt }}</h2>
+
+    <div>
+      <p>{{ texts[lang].to_encrypt }}</p>
+      <smart-input
+          :text="texts[lang].put_text_to_encrypt"
+          v-model="msgToEncrypt"
+          @input="(event) => { encryptMsg(event.target.value) }"
+      ></smart-input>
+      <smart-input
+          :text="texts[lang].send_encrypted_text"
+          v-model="encryptedStr"
+          copyable-field
+          readonly
+      ></smart-input>
+    </div>
+
+    <div>
+      <p>{{ texts[lang].to_decrypt }}</p>
+      <smart-input
+          :text="texts[lang].paste_encrypted_text"
+          v-model="msgToDecrypt"
+          @input="(event) => { decryptMsg(event.target.value) }"
+      ></smart-input>
+      <smart-input
+          :text="texts[lang].decrypted_text"
+          v-model="decryptedStr"
+          copyable-field
+          readonly
+      ></smart-input>
+    </div>
+  </div>
 </template>
+
 
 <script>
 import SmartInput from "@/components/SmartInput.vue";
+import texts from "./texts";
 
 function ab2str(buf) {
     return btoa(String.fromCharCode.apply(null, new Uint8Array(buf)))
@@ -95,6 +101,11 @@ function concatAb(buffer1, buffer2) {
 
 export default {
     name: 'App',
+    computed: {
+        texts() {
+            return texts
+        }
+    },
     components: {
         SmartInput
     },
@@ -110,7 +121,8 @@ export default {
             msgToEncrypt: '',
             encryptedStr: '',
             msgToDecrypt: '',
-            decryptedStr: ''
+            decryptedStr: '',
+            lang: 'en'
         }
     },
     async mounted() {

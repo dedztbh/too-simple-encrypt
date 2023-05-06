@@ -64,7 +64,8 @@ export default {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
+
 input {
-  min-width: 50%;
+    min-width: 50%;
 }
 </style>
