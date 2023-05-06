@@ -1,20 +1,30 @@
 <template>
   <div>
     <p>{{ text }}</p>
-    <input
-        :readonly="readonly"
-        :value="modelValue"
-        @click="() => {if (this.copyableField) copyInputValue(modelValue)}"
-        @input="$emit('update:modelValue', $event.target.value)"
-    >
-    <button v-if="copyButton" @click="copyInputValue(modelValue)">Copy</button>
-    <span :class="{'fade-out':!copied}">Copied!</span>
+    <div class="input-container">
+      <input
+          :readonly="readonly"
+          :value="modelValue"
+          @click="() => {if (this.copyableField) copyInputValue(modelValue)}"
+          @input="$emit('update:modelValue', $event.target.value)"
+      >
+      <button v-if="copyButton" @click="copyInputValue(modelValue)">{{texts[lang].copy}}</button>
+      <button v-if="clearButton" @click="$emit('update:modelValue', '')">{{ texts[lang].clear}}</button>
+      <span :class="{'fade-out':!copied}" style="padding: 0.5em 0 0.5em 0.5em">{{texts[lang].copied}}</span>
+    </div>
   </div>
 </template>
 
 <script>
+import texts from "../texts";
+
 export default {
     name: "CopyableInput",
+    computed: {
+        texts() {
+            return texts
+        }
+    },
     props: {
         readonly: {
             type: Boolean,
@@ -35,6 +45,14 @@ export default {
         copyButton: {
             type: Boolean,
             default: false
+        },
+        clearButton: {
+            type: Boolean,
+            default: false
+        },
+        lang: {
+            type: String,
+            default: 'en'
         }
     },
     data() {
@@ -65,7 +83,14 @@ export default {
     transition: opacity 0.5s ease-in-out;
 }
 
+.input-container {
+    display: flex;
+    width: max(60%, 24em);
+    margin: auto;
+    justify-content: space-between;
+}
+
 input {
-    min-width: 50%;
+    flex-grow: 12;
 }
 </style>

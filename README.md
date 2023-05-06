@@ -9,7 +9,12 @@ Too Simple Encrypt is a super simple tool to encrypt text to send over insecure 
 
 https://dedztbh.github.io/too-simple-encrypt/
 
+## Technical Detail
 
+We first use asymmetric encryption (2048-bit RSA-OAEP with SHA-256) to share a shared key (256-bit AES-CGM).
+Then the shared key is used to encrypt/decrypt text (using a new cryptographically strong random IV for each encryption).
+
+Please note that there is no guarantee that this program is 100% unbreakable.
 
 ## Project setup
 ```

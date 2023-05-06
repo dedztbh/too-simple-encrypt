@@ -2,7 +2,7 @@ const texts = {
     "en": {
         "title": "Too Simple Encrypt",
         "secretly_share": "Secretly share a key",
-        "notice": "*Currently, this tool only ensures secrecy, not integrate or authenticity.",
+        "notice": "*Currently, this tool only ensures secrecy, not integrate or authenticity. Everything will reset on refresh.",
         "one_person": "0. One person will click this button so there is 1 Alice and 1 Bob:",
         "switch_role": "Switch role",
         "you_are_alice": "You are Alice",
@@ -19,12 +19,15 @@ const texts = {
         "send_encrypted_text": "5e. Send this to other (click to copy)",
         "to_decrypt": "To decrypt:",
         "paste_encrypted_text": "4d. Paste encrypt box 5e from other here",
-        "decrypted_text": "5d. Decrypted text (click to copy)"
+        "decrypted_text": "5d. Decrypted text (click to copy)",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "clear": "Clear",
     },
     "zh": {
         "title": "图森破加密",
         "secretly_share": "秘密地共享密钥",
-        "notice": "*目前，本工具只能确保保密性，而不能保证完整性和真实性等。",
+        "notice": "*目前，本工具只能确保保密性，而不能保证完整性和真实性等。刷新页面会重置一切。",
         "one_person": "0. 其中一人需点击这个按钮，保证有1个Alice和1个Bob：",
         "switch_role": "切换角色",
         "you_are_alice": "你是Alice",
@@ -41,7 +44,10 @@ const texts = {
         "send_encrypted_text": "5e. 将此内容发送给对方（点击复制）",
         "to_decrypt": "解密：",
         "paste_encrypted_text": "4d. 将对方的框5e粘贴在这里",
-        "decrypted_text": "5d. 解密文本（点击复制）"
+        "decrypted_text": "5d. 解密文本（点击复制）",
+        "copy": "复制",
+        "copied": "已复制!",
+        "clear": "清除",
     }
 };
 export default texts;

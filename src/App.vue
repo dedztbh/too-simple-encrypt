@@ -1,73 +1,79 @@
 <template>
   <div>
     <h1>{{ texts[lang].title }}</h1>
-    <button @click="lang === 'en' ? lang = 'zh' : lang = 'en'">
-      {{ lang === 'en' ? '切换至中文' : 'Switch to English' }}
-    </button>
+    <div>
+      <button @click="lang === 'en' ? lang = 'zh' : lang = 'en'">
+        {{ lang === 'en' ? '切换至中文' : 'Switch to English' }}
+      </button>
+    </div>
     {{ texts[lang].notice }}
     <h2>{{ texts[lang].secretly_share }}</h2>
     {{ texts[lang].one_person }}
     <button @click="isAlice = !isAlice">{{ texts[lang].switch_role }}</button>
     <div v-if="isAlice">
       <p>{{ texts[lang].you_are_alice }}</p>
-      <smart-input
-          :text="texts[lang].alice_receive_box1"
-          v-model="bobPublicKeyStr"
-          @input="bobPublicKeyStrReceived"></smart-input>
-      <smart-input
-          :text="texts[lang].alice_send_box2"
-          v-model="encryptedSharedKeyStr"
-          readonly
-          copyable-field></smart-input>
+      <smart-input :lang="lang"
+                   :text="texts[lang].alice_receive_box1"
+                   v-model="bobPublicKeyStr"
+                   @input="bobPublicKeyStrReceived"></smart-input>
+      <smart-input :lang="lang"
+                   :text="texts[lang].alice_send_box2"
+                   v-model="encryptedSharedKeyStr"
+                   readonly
+                   copyable-field></smart-input>
     </div>
     <div v-else>
       <p>{{ texts[lang].you_are_bob }}</p>
-      <smart-input
-          :text="texts[lang].bob_send_box1"
-          v-model="publicKeyStr"
-          readonly
-          copyable-field></smart-input>
-      <smart-input
-          :text="texts[lang].bob_receive_box2"
-          @input="receiveSharedKey"></smart-input>
+      <smart-input :lang="lang"
+                   :text="texts[lang].bob_send_box1"
+                   v-model="publicKeyStr"
+                   readonly
+                   copyable-field></smart-input>
+      <smart-input :lang="lang"
+                   :text="texts[lang].bob_receive_box2"
+                   @input="receiveSharedKey"></smart-input>
     </div>
 
     <h2>{{ texts[lang].shared_key }}</h2>
-    <smart-input
-        :text="texts[lang].shared_key_instruction"
-        copy-button
-        v-model="sharedKeyStr"
-        @input="(event) => { updateSharedKey(event.target.value) }"></smart-input>
+    <smart-input :lang="lang"
+                 :text="texts[lang].shared_key_instruction"
+                 copy-button
+                 v-model="sharedKeyStr"
+                 @input="(event) => { updateSharedKey(event.target.value) }"></smart-input>
 
     <h2>{{ texts[lang].encrypt_decrypt }}</h2>
 
     <div>
       <p>{{ texts[lang].to_encrypt }}</p>
-      <smart-input
-          :text="texts[lang].put_text_to_encrypt"
-          v-model="msgToEncrypt"
-          @input="(event) => { encryptMsg(event.target.value) }"
+      <smart-input :lang="lang"
+                   :text="texts[lang].put_text_to_encrypt"
+                   v-model="msgToEncrypt"
+                   @input="(event) => { encryptMsg(event.target.value) }"
+                   clearButton
       ></smart-input>
-      <smart-input
-          :text="texts[lang].send_encrypted_text"
-          v-model="encryptedStr"
-          copyable-field
-          readonly
+      <smart-input :lang="lang"
+                   :text="texts[lang].send_encrypted_text"
+                   v-model="encryptedStr"
+                   copyable-field
+                   readonly
+                   clearButton
       ></smart-input>
     </div>
 
     <div>
       <p>{{ texts[lang].to_decrypt }}</p>
-      <smart-input
-          :text="texts[lang].paste_encrypted_text"
-          v-model="msgToDecrypt"
-          @input="(event) => { decryptMsg(event.target.value) }"
+      <smart-input :lang="lang"
+                   :text="texts[lang].paste_encrypted_text"
+                   v-model="msgToDecrypt"
+                   @input="(event) => { decryptMsg(event.target.value) }"
+                   clearButton
       ></smart-input>
-      <smart-input
-          :text="texts[lang].decrypted_text"
-          v-model="decryptedStr"
-          copyable-field
-          readonly
+      <smart-input :lang="lang"
+                   :text="texts[lang].decrypted_text"
+                   v-model="decryptedStr"
+                   copyable-field
+                   readonly
+                   clearButton
       ></smart-input>
     </div>
 
