@@ -70,6 +70,10 @@
           readonly
       ></smart-input>
     </div>
+
+    <div style="margin-top: 3em">
+      <a href="https://github.com/dedztbh/too-simple-encrypt">Source code on GitHub</a>
+    </div>
   </div>
 </template>
 

@@ -23,7 +23,7 @@ const texts = {
     },
     "zh": {
         "title": "图森破加密",
-        "secretly_share": "秘密共享密钥",
+        "secretly_share": "秘密地共享密钥",
         "notice": "*目前，本工具只能确保保密性，而不能保证完整性和真实性等。",
         "one_person": "0. 其中一人需点击这个按钮，保证有1个Alice和1个Bob：",
         "switch_role": "切换角色",
@@ -44,4 +44,4 @@ const texts = {
         "decrypted_text": "5d. 解密文本（点击复制）"
     }
 };
-export default texts
+export default texts;

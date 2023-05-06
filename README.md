@@ -1,5 +1,16 @@
 # too-simple-encrypt
 
+Too Simple Encrypt is a super simple tool to encrypt text to send over insecure channels for everyone.
+
+图森破加密是一个超简单的文本加密工具，使其可以通过不安全的渠道发送。
+
+## Go to this link to use the tool
+可以用以下链接使用本工具
+
+https://dedztbh.github.io/too-simple-encrypt/
+
+
+
 ## Project setup
 ```
 yarn install
