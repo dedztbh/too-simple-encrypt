@@ -9,6 +9,10 @@ Too Simple Encrypt is a super simple tool to encrypt text to send over insecure 
 
 https://dedztbh.github.io/too-simple-encrypt/
 
+You can also install it as an offline app on mobile. Visit the link above and click the install button in your browser menu.
+
+你也可以把它作为一个离线应用程序安装在手机上。访问上述链接并点击浏览器菜单中的安装按钮。
+
 ## Technical Detail
 
 We first use asymmetric encryption (2048-bit RSA-OAEP with SHA-256) to share a shared key (256-bit AES-CGM).
