@@ -16,6 +16,10 @@ Then the shared key is used to encrypt/decrypt text (using a new cryptographical
 
 Please note that there is no guarantee that this program is 100% unbreakable.
 
+## Note on https
+
+This tool only works when using https. 
+
 ## Project setup
 ```
 yarn install

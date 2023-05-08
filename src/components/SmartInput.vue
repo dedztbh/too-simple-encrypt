@@ -8,9 +8,9 @@
           @click="() => {if (this.copyableField) copyInputValue(modelValue)}"
           @input="$emit('update:modelValue', $event.target.value)"
       >
-      <button v-if="copyButton" @click="copyInputValue(modelValue)">{{texts[lang].copy}}</button>
-      <button v-if="clearButton" @click="$emit('update:modelValue', '')">{{ texts[lang].clear}}</button>
-      <span :class="{'fade-out':!copied}" style="padding: 0.5em 0 0.5em 0.5em">{{texts[lang].copied}}</span>
+      <button v-if="copyButton" @click="copyInputValue(modelValue)">{{ texts[lang].copy }}</button>
+      <button v-if="clearButton" @click="$emit('update:modelValue', '')">{{ texts[lang].clear }}</button>
+      <span :class="{'fade-out':!copied}" style="padding: 0.5em 0 0.5em 0.5em">{{ texts[lang].copied }}</span>
     </div>
   </div>
 </template>
@@ -85,9 +85,21 @@ export default {
 
 .input-container {
     display: flex;
-    width: max(60%, 24em);
+    width: 60%;
     margin: auto;
     justify-content: space-between;
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1200px) {
+    .input-container {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .input-container {
+        width: 100%;
+    }
 }
 
 input {
