@@ -2,7 +2,7 @@ const texts = {
     "en": {
         "title": "Too Simple Encrypt",
         "secretly_share": "Secretly share a key",
-        "notice": "*Currently, this tool only ensures secrecy, not integrate or authenticity. Everything will reset on refresh.",
+        "notice": "*Currently, this tool only ensures secrecy, not integrity or authenticity. Everything will reset on refresh.",
         "one_person": "0. One person will click this button so there is 1 Alice and 1 Bob:",
         "switch_role": "Switch role",
         "you_are_alice": "You are Alice",
